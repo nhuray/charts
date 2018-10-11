@@ -94,7 +94,7 @@ The following table lists the configurable parameters of the Hyperledger Fabric 
 | `peer.mspID`                       | ID of MSP the Peer belongs to                        | `Org1MSP`                                                  |
 | `secrets.channel`                  | Secret containing Channel tx for peer to create/join | ``                                                         |
 | `secrets.adminCert`                | Secret containing Peer Org admin certificate         | ``                                                         |
-| `secrets.adminCert`                | Secret containing Peer Org admin private key         | ``                                                         |
+| `secrets.adminKey`                | Secret containing Peer Org admin private key         | ``                                                         |
 | `secrets.caServerTls`              | Secret containing CA Server TLS certificate      | `ca--tls`                                                  |
 | `resources`                        | CPU/Memory resource requests/limits                  | `{}`                                                       |
 | `nodeSelector`                     | Node labels for pod assignment                       | `{}`                                                       |
