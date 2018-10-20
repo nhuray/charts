@@ -159,3 +159,20 @@ affinity: {}
   #       labelSelector:
   #         matchLabels:
   #           app: hlf-ca
+
+
+jobs:
+  ## ref: https://hyperledger-fabric-ca.readthedocs.io/en/latest/users-guide.html#enrolling-the-bootstrap-identity
+  enroll:
+    enabled: false
+    activeDeadlineSeconds: 300
+    backoffLimit: 5
+    completions: 1
+    config:
+      create: []
+        # - /kafka
+        # - /ureplicator
+    env: []
+    parallelism: 1
+    resources: {}
+    restartPolicy: Never
