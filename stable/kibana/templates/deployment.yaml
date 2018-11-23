@@ -168,6 +168,13 @@ spec:
 {{- if .Values.plugins.enabled}}
         - name: plugins
           mountPath: /usr/share/kibana/plugins
+        {{- range $pluginName, $pluginFiles := $.Values.plugins.files }}
+        {{- range $configFile, $content := $pluginFiles }}
+        - name: plugin-{{$pluginName}}
+          mountPath: /usr/share/kibana/plugins/{{$pluginName}}/{{$configFile}}
+          subPath: {{ $configFile }}
+        {{- end }}  
+        {{- end }}          
 {{- end }}
 {{- with .Values.extraContainers }}
 {{ tpl . $ | indent 6 }}
@@ -203,6 +210,11 @@ spec:
           {{- else }}
           emptyDir: {}
           {{- end }}
+        {{- range $pluginName, $pluginFiles := $.Values.plugins.files }}
+        - name: plugin-{{$pluginName}}
+          configMap:
+            name: {{ template "kibana.fullname" $ }}-plugin-{{$pluginName}}
+        {{- end -}}
 {{- end }}
 {{- if .Values.dashboardImport.dashboards }}
         - name: {{ template "kibana.fullname" . }}-dashboards
